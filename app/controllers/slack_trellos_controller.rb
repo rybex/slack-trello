@@ -1,11 +1,13 @@
 class SlackTrellosController < ApplicationController
 
   def create_card
-    Rails.logger.info "Text " + params[:text]
-    Rails.logger.info "Token " + params[:token]
-    Rails.logger.info "Token origin " + ENV['SLACK_TOKEN']
     form = validate_request
     create_trello_card(form)
+    respond_to do |format|
+      format.json do
+        render json: {text: 'Ticket created'}
+      end
+    end
   rescue RequestForm::RequestInvalid
     respond_to do |format|
       format.json do
