@@ -1,8 +1,6 @@
 class SlackTrellosController < ApplicationController
 
   def create_card
-    respond_to do |format|
-      format.json { render text: 'Successfully Done!' }
-    end
+    logger.debug "Hello world!" + params[:user_name]
   end
 end
