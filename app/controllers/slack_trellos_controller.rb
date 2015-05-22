@@ -1,6 +1,7 @@
 class SlackTrellosController < ApplicationController
 
   def create_card
+    logger.debug "Hello world!" + params[:token] + " " + params[:text]
     form = validate_request
     create_trello_card(form)
   rescue RequestForm::RequestInvalid
