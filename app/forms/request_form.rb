@@ -9,7 +9,7 @@ class RequestForm
   attr_reader :token, :command, :text
 
   def validate!
-    raise RequestInvalid unless token_valid? && command_valid? && text_valid?
+    raise RequestInvalid unless command_valid? && text_valid?
   end
 
   private
