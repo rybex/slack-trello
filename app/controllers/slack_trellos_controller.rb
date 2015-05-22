@@ -3,29 +3,13 @@ class SlackTrellosController < ApplicationController
   def create_card
     form = validate_request
     create_trello_card(form)
-    respond_to do |format|
-      format.json do
-        render json: {text: 'Ticket created'}
-      end
-    end
+    render json: {text: 'Ticket created'}
   rescue RequestForm::RequestInvalid
-    respond_to do |format|
-      format.json do
-        render json: {text: 'Wrong request params. Something is missing'}
-      end
-    end
+    render json: {text: 'Wrong request params. Something is missing'}
   rescue CreateTrelloCard::BoardNotFound
-    respond_to do |format|
-      format.json do
-        render json: {text: 'Board not exist'}
-      end
-    end
+    render json: {text: 'Board not exist'}
   rescue CreateTrelloCard::BoardListNotFound
-    respond_to do |format|
-      format.json do
-        render json: {text: 'Boards list not exist'}
-      end
-    end
+    render json: {text: 'Boards list not exist'}
   end
 
   private
